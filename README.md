@@ -7,7 +7,7 @@
 </p>
 
 **Stable**
-[![Build Status](https://travis-ci.org/yiisoft/yii-docker.svg?branch=master)](https://travis-ci.org/yiisoft/yii-docker)
+[![Build Status](https://travis-ci.com/yiisoft/yii-docker.svg?branch=master)](https://travis-ci.com/yiisoft/yii-docker)
 **Development**
 [![pipeline status](https://gitlab.com/yiisoft/yii-docker/badges/master/pipeline.svg)](https://gitlab.com/yiisoft/yii-docker/commits/master)
 
