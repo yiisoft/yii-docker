@@ -15,7 +15,7 @@ services:
     volumes:
       - ./tests:/tests:delegated
       # Framework testing
-      - ./_host-volumes/yii:/yii:delegated
+      - ./_host-volumes/yii-core:/yii-core:delegated
       # Application testing
       - ./_host-volumes/app:/app:delegated
       # Composer cache
