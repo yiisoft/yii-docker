@@ -3,7 +3,7 @@
 Repo maintainers can trigger the build of a specific version via GitLab API
 
     curl -X POST \
-         -F token=${GITLAB_YII2_DOCKER_TOKEN} \
+         -F token=${GITLAB_YII_DOCKER_TOKEN} \
          -F ref=master \
          -F "variables[DOCKERFILE_FLAVOUR]=debian" \
          -F "variables[PHP_BASE_IMAGE_VERSION]=7.1.3-apache" \
@@ -12,4 +12,4 @@ Repo maintainers can trigger the build of a specific version via GitLab API
 
 This can also be used to test pre-releases of PHP or other flavors, if there is a Dockerfile available for them.
 
-> Tokens are managed under [GitLab settings](https://gitlab.com/yiisoft/yii2-docker/settings/ci_cd).
+> Tokens are managed under [GitLab settings](https://gitlab.com/yiisoft/yii-docker/settings/ci_cd).

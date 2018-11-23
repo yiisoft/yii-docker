@@ -36,7 +36,7 @@ matrix:
 before_install:
   - export TEST_YII_VERSION=6b0be47e0fa9c532e03b07b4369050582fcf5c7a
   - export DOCKER_COMPOSE_VERSION=1.16.1
-  - export PHP_IMAGE_NAME=yiisoftware/yii2-php
+  - export PHP_IMAGE_NAME=yiisoftware/yii-php
   - if [ -n "$TRAVIS_TAG" ]; then export PHP_IMAGE_VERSION_SUFFIX=-${TRAVIS_TAG}; fi
   - sudo apt-get update
   - sudo apt-get install docker-ce
@@ -46,8 +46,8 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 install:
-  - git clone https://github.com/yiisoft/yii2 _host-volumes/yii2
-  - pushd _host-volumes/yii2 && git checkout ${TEST_YII_VERSION} && popd
+  - git clone https://github.com/yiisoft/yii-core _host-volumes/yii-core
+  - pushd _host-volumes/yii-core && git checkout ${TEST_YII_VERSION} && popd
   - cp .env-dist .env
 
 before_script:
@@ -62,8 +62,8 @@ script:
   - echo "travis_fold:end:BUILD folding ends"
   - docker-compose run --rm php php -v
   - docker-compose run --rm php php /tests/requirements.php
-  - docker-compose run --rm -w /yii2 php composer install
-  - docker-compose run --rm -w /yii2 php php -d error_reporting="E_ALL ^ E_DEPRECATED" vendor/bin/phpunit tests/framework/ --exclude db
+  - docker-compose run --rm -w /yii-core php composer install
+  - docker-compose run --rm -w /yii-core php php -d error_reporting="E_ALL ^ E_DEPRECATED" vendor/bin/phpunit tests/framework/ --exclude db
 
 after_script:
   - docker images
