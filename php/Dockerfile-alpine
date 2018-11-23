@@ -35,6 +35,7 @@ RUN apk --update --virtual build-deps add \
         libltdl \
         libxml2 \
         mysql-client \
+        nodejs \
         postgresql && \
     docker-php-ext-configure gd \
         --with-gd \
