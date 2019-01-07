@@ -66,7 +66,3 @@ If you are using macOS, you can fill `xdebug.remote_host` with `host.docker.inte
 
 More information can be found in the [docs](/docs) folder.
 
-
-## FAQ
-
-- Error code `139` on Alpine for PHP `5.6-7.1` results from a broken ImageMagick installation         
