@@ -1,4 +1,5 @@
 <?php
+
 /* @var $this YiiRequirementChecker */
 /* @var $summary array */
 /* @var $requirements array[] */

@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Yii Application Requirement Checker</title>
-    <?php $this->renderViewFile(dirname(__FILE__) . '/css.php'); ?>
+    <?php $this->renderViewFile(dirname(__FILE__).'/css.php'); ?>
 </head>
 <body>
 <div class="container">
@@ -69,7 +69,7 @@
     </main>
     <hr>
     <footer>
-        <p>Server: <?php echo $this->getServerInfo() . ' ' . $this->getNowDate() ?></p>
+        <p>Server: <?php echo $this->getServerInfo().' '.$this->getNowDate() ?></p>
         <p>Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></p>
     </footer>
 </div>
