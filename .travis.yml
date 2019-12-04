@@ -64,3 +64,20 @@ after_success:
     fi
 
 # vim:set et ts=2 sw=2:
+
+notifications:
+  slack:
+    -
+      rooms:
+        -
+          secure: ggC2bdFoMf9PJwlqHNMZSaYYgCRmCkSLoZRzQ3lB5i0pdr2n9ISjPxRLSbmDsWPjRYv1uSlQo4i3Yn9QAIqzl7nJJceXY3nQ02kwqj4zIxjL/dBdNPZLenO2n4+Sv4k18QkmfDS1wTBU2rJYIyxFp8rpm0e5H9leqa6Am5YnJbqQ9y2Tl+TwlJLMOVCm3Nj9F5xXCFDsDIGR/qkX+rvqbtMPruSZKWyM2jeengo11zFEmsBUrqI9pDStYjjLM5UWk0V65yj/f4mC/GRq/KAgHoGy/1U9QpGcxKGS3lsjJog5iUnT9DWVbKUzumFVhbg9D0gCqOvhtJWbkPmWDLaK5N29aUyLa5tkGsmCpaQpg//M0l5/uuNuoXQb/MoBLucJ/+Jga58SsC99BoiQ+meODOcMw7K60N6IrSFQr1m0y195ZlnW59KphjL5cdiBR9NJNm8wgYVrtzZbUptK1q0bp7dPWGrE+SXJiKuuG6sL+31F+kebfPpuhaJ3KWd3lBNJQ+cgbD/rtElFORd+9uZnA0kF3zc9GwHg2wbrRdq0xJDt0CGZjzjXLt1AYQbA2FsAX3sJJjmuxgVUTaUHFAgykFyLSz0oLI4a+1QBcE1ORFvqHI5fHsJ97lnPSaQkl8A+0bRFrYJeLjqF0ndpyVeeBgmOm/NHtadLSVmjCdgWEMA=
+      on_success: always
+      on_failure: never
+      on_pull_requests: false
+    -
+      rooms:
+        -
+          secure: hsF63ox567frvLDstBjaoWsqFl5hfKEleTm3X8O30WDLz+bKY3Tq5NvwzpbOp9y5tttITNA8y7p+N8J1OkoDr/fUtMmnyehugROXjr1P1zIyOUpSSMz/8pDYIS2LGbEWSFTEIM0+rWaTxeKqDF1F5L6XA4YDRbP0ThFvErfo3oewCEwXRkkdojqhP7mBljVZlO5u3lTGl028NfSVOhAnLaLSJxdN08m8f8hSGxsB53PqXrOG2Ku08IdzcstMqPas9P0aDggy8qX8s7RxZXBXk2odhV0+9VTBjGAtA3CrPGl15KuXBwMc7lrjFhlWOsR9h1rq394eUQBKfnMYXqgmxqSlcTuKkVVFpjuAdcdoRO6/OBNBj+sZMC32rXlEn9r4wZMX/mdIdDcYtJAeRlF2YjtFA/77lCU9aIlLqY1x60F6AInOvxOxqnghkE4InyRdg2ukgl8kLmQnGSMhOeA8d38b6C60k3GTYq01+gQMT9zduXMYALD/NRWlUX2wTnlCxawXENjgTONpzJ8gQp2zo5Wv2A3dqJL7IK12qu4EhM/XO2GTCofzA7Xk/HTrrF1APpaD/1A1tbUt0sjjOzqWcaFGCFbHtVMG6ekZGZCNgqou34GDa2RiM3MUwtNj6PboFpPR4PpQ3pSlPEzDQyQKwQpXpnqaVeZeliMjwzCLOls=
+      on_success: never
+      on_failure: always
+      on_pull_requests: false
