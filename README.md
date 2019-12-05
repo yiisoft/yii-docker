@@ -19,6 +19,14 @@ This is the repo of the official [Yii 3.x Framework](http://www.yiiframework.com
 These Docker images are built on top of the official PHP Docker image, they contain additional PHP extensions required to run Yii 3.x framework, but no code of the framework itself.
 The `Dockerfile`(s) of this repository are designed to build from different PHP-versions by using *build arguments*.
 
+### Features
+
+- built from official Docker images
+- all core-framework tests pass
+- includes Xdebug (not loaded by default)
+- ready for handling client-side packages
+- bash auto-completion
+
 ### Available versions for `yiisoftware/yii-php`
 
 ```
