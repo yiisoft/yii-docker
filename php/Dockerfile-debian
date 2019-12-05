@@ -8,10 +8,7 @@ FROM php:${PHP_BASE_IMAGE_VERSION}
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get -y install \
-        gnupg2 && \
-    apt-key update && \
-    apt-get update && \
-    apt-get -y install \
+            gnupg2 \
             g++ \
             git \
             curl \
@@ -22,13 +19,14 @@ RUN apt-get update && \
             libfreetype6-dev \
             libjpeg-dev \
             libjpeg62-turbo-dev \
+            libonig-dev \
             libmagickwand-dev \
             libpq-dev \
             libpng-dev \
             libxml2-dev \
             libzip-dev \
             zlib1g-dev \
-            mysql-client \
+            default-mysql-client \
             openssh-client \
             nano \
             unzip \
@@ -65,6 +63,15 @@ RUN printf "\n" | pecl install \
         imagick \
         mongodb
 
+# Environment settings
+ENV COMPOSER_ALLOW_SUPERUSER=1 \
+    PHP_USER_ID=33 \
+    PHP_ENABLE_XDEBUG=0 \
+    PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
+    TERM=linux \
+    VERSION_PRESTISSIMO_PLUGIN=^0.3.7 \
+    VERSION_XDEBUG=2.8.1
+
 # Install node (for asset management with foxy)
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
@@ -73,20 +80,12 @@ RUN apt-get install -y nodejs
 RUN cd /tmp && \
     git clone git://github.com/xdebug/xdebug.git && \
     cd xdebug && \
-    git checkout 2.7.0beta1 && \
+    git checkout ${XDEBUG_VERSION} && \
     phpize && \
     ./configure --enable-xdebug && \
     make && \
     make install && \
     rm -rf /tmp/xdebug
-
-# Environment settings
-ENV PHP_USER_ID=33 \
-    PHP_ENABLE_XDEBUG=0 \
-    PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
-    TERM=linux \
-    VERSION_PRESTISSIMO_PLUGIN=^0.3.7 \
-    COMPOSER_ALLOW_SUPERUSER=1
 
 # Add configuration files
 COPY image-files/ /

@@ -26,3 +26,4 @@ build:
     - docker-compose run --rm php php /tests/requirements.php
     - docker-compose run --rm -w /yii-core php composer install
     - docker-compose run --rm -w /yii-core php php -d error_reporting="E_ALL ^ E_DEPRECATED" vendor/bin/phpunit tests/framework/ --exclude db
+    - docker-compose run --rm php npm
