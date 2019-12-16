@@ -33,7 +33,7 @@ script:
   - docker-compose run --rm php php /tests/requirements.php
   - docker-compose run --rm -w /yii-dev-tool php composer install
   # TODO: install and test "core" packages
-  - docker-compose run --rm -w /yii-dev-tool php ./yii-dev install validator
+  #- docker-compose run --rm -w /yii-dev-tool php ./yii-dev install validator
 
 after_script:
   - docker images
