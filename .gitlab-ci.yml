@@ -14,7 +14,6 @@ before_script:
   - pip install --no-cache-dir docker-compose==1.16.0
   - git clone https://github.com/yiisoft/yii-dev-tool _host-volumes/yii-dev-tool
   - pushd _host-volumes/yii-dev-tool && git checkout ${TEST_YII_VERSION} && popd
-  - cp .env-dist .env
   - docker info
 
 build:
