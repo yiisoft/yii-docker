@@ -7,7 +7,7 @@ env:
 
 variables:
     GITHUB_API_TOKEN: ''
-    TEST_YII_VERSION: '7f8bb969fc9737b9af656fc4452d98ac5f34ab53'
+    TEST_YII_VERSION: 'master'
     PHP_IMAGE_NAME: 'yiisoftware/yii-php'
     DOCKER_COMPOSE_VERSION: 1.61.1
 
@@ -15,14 +15,15 @@ before_install:
   - if [ -n "$TRAVIS_TAG" ]; then export PHP_IMAGE_VERSION_SUFFIX=-${TRAVIS_TAG}; fi
   - sudo apt-get update
   - sudo apt-get install docker-ce
+  - docker-compose version
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
 install:
-  - git clone https://github.com/yiisoft/yii-core _host-volumes/yii-core
-  - pushd _host-volumes/yii-core && git checkout ${TEST_YII_VERSION} && popd
+  - git clone https://github.com/yiisoft/yii-dev-tool _host-volumes/yii-dev-tool
+  - pushd _host-volumes/yii-dev-tool && git checkout ${TEST_YII_VERSION} && popd
   - cp .env-dist .env
 
 before_script:
