@@ -9,17 +9,9 @@ variables:
     GITHUB_API_TOKEN: ''
     TEST_YII_VERSION: 'master'
     PHP_IMAGE_NAME: 'yiisoftware/yii-php'
-    DOCKER_COMPOSE_VERSION: 1.61.1
 
 before_install:
   - if [ -n "$TRAVIS_TAG" ]; then export PHP_IMAGE_VERSION_SUFFIX=-${TRAVIS_TAG}; fi
-  - sudo apt-get update
-  - sudo apt-get install docker-ce
-  - docker-compose version
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
 
 install:
   - git clone https://github.com/yiisoft/yii-dev-tool _host-volumes/yii-dev-tool
@@ -39,8 +31,9 @@ script:
   - docker-compose run --rm php php -v
   - docker-compose run --rm php npm -v
   - docker-compose run --rm php php /tests/requirements.php
-  - docker-compose run --rm -w /yii-core php composer install
-  - docker-compose run --rm -w /yii-core php php -d error_reporting="E_ALL ^ E_DEPRECATED" vendor/bin/phpunit tests/framework/ --exclude db
+  - docker-compose run --rm -w /yii-dev-tool php composer install
+  # TODO: install and test "core" packages
+  - docker-compose run --rm -w /yii-dev-tool php ./yii-dev install validator
 
 after_script:
   - docker images
