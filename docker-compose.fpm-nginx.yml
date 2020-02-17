@@ -8,4 +8,4 @@ services:
       - '8100:80'
     volumes:
       # Application testing
-      - ./_host-volumes/app/web:/app/web:delegated
+      - ./_host-volumes/app/public:/app/public:delegated
