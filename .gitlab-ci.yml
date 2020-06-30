@@ -10,8 +10,7 @@ variables:
   TEST_YII_VERSION: 2.0.15.1
 
 before_script:
-  - apk add --no-cache python py2-pip git
-  - pip install --no-cache-dir docker-compose==1.16.0
+  - apk add --no-cache git curl docker-compose
   - git clone https://github.com/yiisoft/yii-dev-tool _host-volumes/yii-dev-tool
   - pushd _host-volumes/yii-dev-tool && git checkout ${TEST_YII_VERSION} && popd
   - docker info
