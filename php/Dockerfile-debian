@@ -72,8 +72,9 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
     VERSION_XDEBUG=2.8.1
 
 # Install node (for asset management with foxy)
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get install -y nodejs
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g yarn
 
 # Check if Xdebug extension need to be compiled
 RUN cd /tmp && \
