@@ -329,7 +329,7 @@ class YiiRequirementChecker
         }
         if ($_return_) {
             ob_start();
-            ob_implicit_flush(false);
+            PHP_VERSION_ID >= 80000 ? ob_implicit_flush(false) : ob_implicit_flush(0);
             require $_viewFile_;
 
             return ob_get_clean();
