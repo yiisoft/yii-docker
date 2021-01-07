@@ -79,7 +79,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
 RUN cd /tmp && \
     git clone git://github.com/xdebug/xdebug.git && \
     cd xdebug && \
-    git checkout ${XDEBUG_VERSION} && \
+    git checkout ${VERSION_XDEBUG} && \
     phpize && \
     ./configure --enable-xdebug && \
     make && \
