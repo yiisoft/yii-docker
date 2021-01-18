@@ -55,11 +55,10 @@ RUN docker-php-ext-configure gd \
 
 # Install PECL extensions
 # see http://stackoverflow.com/a/8154466/291573) for usage of `printf`
+# TODO optional imagick installation
 RUN printf "\n" | pecl install \
-        imagick \
         mongodb && \
     docker-php-ext-enable \
-        imagick \
         mongodb
 
 # Environment settings
@@ -68,7 +67,7 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
     PHP_ENABLE_XDEBUG=0 \
     PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
     TERM=linux \
-    VERSION_XDEBUG=2.8.1
+    VERSION_XDEBUG=3.0.0
 
 # Install node (for asset management with foxy)
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
