@@ -30,8 +30,8 @@ The `Dockerfile`(s) of this repository are designed to build from different PHP-
 ### Available versions for `yiisoftware/yii-php`
 
 ```
-7.4-apache,
-7.4-fpm
+8.0-apache, 7.4-apache,
+8.0-fpm, 7.4-fpm
 ```
 
 Inlcudes `npm`.
