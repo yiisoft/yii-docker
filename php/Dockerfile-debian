@@ -56,11 +56,33 @@ RUN docker-php-ext-configure gd \
 # Install PECL extensions
 # see http://stackoverflow.com/a/8154466/291573) for usage of `printf`
 RUN printf "\n" | pecl install \
-        imagick \
         mongodb && \
     docker-php-ext-enable \
-        imagick \
         mongodb
+
+# Imagick Commit to install
+# https://github.com/Imagick/imagick
+ARG IMAGICK_COMMIT="132a11fd26675db9eb9f0e9a3e2887c161875206"
+
+RUN if [ `php -r "echo (version_compare(PHP_VERSION, '8.0.0', '>=') ? 1 : 0);"` ]; then \
+        echo "**** install imagick php extension from source ****" && \
+                cd /usr/local/src && \
+                git clone https://github.com/Imagick/imagick && \
+                cd imagick && \
+                git checkout ${IMAGICK_COMMIT} && \
+                phpize && \
+                ./configure && \
+                make && \
+                make install && \
+                cd .. && \
+                rm -rf imagick && \
+                docker-php-ext-enable imagick; \
+    else \
+        printf "\n" | pecl install \
+                imagick && \
+            docker-php-ext-enable \
+                imagick; \
+    fi
 
 # Environment settings
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
@@ -68,7 +90,7 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
     PHP_ENABLE_XDEBUG=0 \
     PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
     TERM=linux \
-    VERSION_XDEBUG=2.8.1
+    VERSION_XDEBUG=3.0.0
 
 # Install node (for asset management with foxy)
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
@@ -88,6 +110,12 @@ RUN cd /tmp && \
 
 # Add configuration files
 COPY image-files/ /
+
+RUN if [ `echo "$VERSION_XDEBUG" | grep -cE [3][.][0-9]+[.][0-9]+.*` = 1 ]; then \
+        rm /usr/local/etc/php/conf.d/xdebug2.ini; \
+    else \
+        rm /usr/local/etc/php/conf.d/xdebug3.ini; \
+    fi
 
 # Add GITHUB_API_TOKEN support for composer
 RUN chmod 700 \
