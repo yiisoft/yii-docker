@@ -111,7 +111,7 @@ RUN cd /tmp && \
 # Add configuration files
 COPY image-files/ /
 
-RUN if [ `echo "$VERSION_XDEBUG" | grep -cE [3][.][0-9]+[.][0-9]+.*` > 0 ]; then \
+RUN if [ `echo "$VERSION_XDEBUG" | grep -cE [3][.][0-9]+[.][0-9]+.*` = 1 ]; then \
         rm /usr/local/etc/php/conf.d/xdebug2.ini; \
     else \
         rm /usr/local/etc/php/conf.d/xdebug3.ini; \
