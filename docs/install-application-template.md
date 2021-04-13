@@ -2,7 +2,7 @@
 
 Enter the `php` container
 
-    composer create-project yiisoft/yii-project-template
+    composer create-project yiisoft/app /app
     
 Open in your browser
 

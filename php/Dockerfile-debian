@@ -37,6 +37,12 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
 # Add configuration files
 COPY image-files/ /
 
+RUN if [ `echo "$VERSION_XDEBUG" | grep -cE [3][.][0-9]+[.][0-9]+.*` = 1 ]; then \
+        rm /usr/local/etc/php/conf.d/xdebug2.ini; \
+    else \
+        rm /usr/local/etc/php/conf.d/xdebug3.ini; \
+    fi
+
 # Add GITHUB_API_TOKEN support for composer
 RUN chmod 700 \
         /usr/local/bin/docker-php-entrypoint \
@@ -58,3 +64,6 @@ RUN apt-get install bash-completion && \
     mkdir /etc/bash_completion.d && \
     curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
          -o /etc/bash_completion.d/yii
+
+# Application environment
+WORKDIR /app
