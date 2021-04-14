@@ -1,11 +1,15 @@
 version: '2'
 services:
-  web:
-    image: phundament/nginx-one:1.9-5.1.1
-    environment:
-      - FASTCGI_PASS_HOST=php
-    ports:
-      - '8100:80'
-    volumes:
-      # Application testing
-      - ./_host-volumes/app/public:/app/public:delegated
+    web:
+        build:
+            dockerfile: Dockerfile-fpm-nginx
+            context: 'nginx'
+            args:
+                - PHP_BASE_IMAGE_VERSION=${PHP_BASE_IMAGE_VERSION}
+        environment:
+            - FASTCGI_PASS_HOST=php
+        ports:
+            - '8100:80'
+        volumes:
+            # Application testing
+            - ./_host-volumes/app/public:/app/public:delegated
