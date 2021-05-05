@@ -34,7 +34,7 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
     TERM=linux
 
 # Install node (for asset management with foxy)
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs && \
     npm install -g yarn
 
