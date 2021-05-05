@@ -43,13 +43,16 @@ jobs:
         docker-compose version
     - name: Build Image
       run: docker-compose build --build-arg X_LEGACY_GD_LIB=$X_LEGACY_GD_LIB
-    - name: Test
+    - name: Test no Xdebug loaded by default
+      run: docker-compose run --rm php php -v | grep "Xdebug" && exit 1
+    - name: Test Xdebug loaded with PHP_ENABLE_XDEBUG=1
+      run: docker-compose run --rm -e PHP_ENABLE_XDEBUG=1 php php -v | grep "Xdebug"
+    - name: Test Yii requirements
+      run: docker-compose run --rm php php /tests/requirements.php
+    - name: Test installation & framework
       run: |
-        docker-compose run --rm php php -v
-        docker-compose run --rm -e PHP_ENABLE_XDEBUG=1 php php -v
-        docker-compose run --rm php php /tests/requirements.php
-        docker-compose run --rm -w /yii-dev-tool php composer install
-        docker images
+          docker-compose run --rm -w /yii-dev-tool php composer install
+          docker images
     - name: Login to Docker
       if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master'
       uses: docker/login-action@v1
