@@ -4,8 +4,8 @@
 ARG PHP_BASE_IMAGE_VERSION
 FROM php:${PHP_BASE_IMAGE_VERSION}
 
+# Install system packages for PHP extensions recommended for Yii 2.0 Framework
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
-
 RUN install-php-extensions \
         soap \
         zip \
@@ -23,6 +23,10 @@ RUN install-php-extensions \
         mongodb \
         xdebug
 
+# Disable xdebug by default (see PHP_ENABLE_XDEBUG)
+RUN rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+# Set default ENV variables
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     PHP_USER_ID=33 \
     PHP_ENABLE_XDEBUG=0 \
