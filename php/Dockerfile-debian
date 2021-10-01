@@ -4,27 +4,30 @@
 ARG PHP_BASE_IMAGE_VERSION
 FROM php:${PHP_BASE_IMAGE_VERSION}
 
-# Install system packages for PHP extensions recommended for Yii 2.0 Framework
+# Install system packages for PHP extensions recommended for Yii
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+# See https://github.com/mlocati/docker-php-extension-installer#supported-php-extensions
 RUN install-php-extensions \
-        soap \
-        zip \
-        curl \
         bcmath \
         exif \
-        gd \
-        iconv \
+        sockets \
+        zip \
         intl \
-        mbstring \
-        opcache \
+        gettext \
         pdo_mysql \
         pdo_pgsql \
-        imagick \
         mongodb \
+        gd \
+        imagick \
+        opcache \
         xdebug
 
 # Disable xdebug by default (see PHP_ENABLE_XDEBUG)
 RUN rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+# Install Composer
+RUN install-php-extensions @composer-2.1.3
+RUN composer clear-cache
 
 # Set default ENV variables
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
@@ -47,21 +50,12 @@ RUN if [ `echo "$VERSION_XDEBUG" | grep -cE [3][.][0-9]+[.][0-9]+.*` = 1 ]; then
         rm /usr/local/etc/php/conf.d/xdebug3.ini; \
     fi
 
-# Add GITHUB_API_TOKEN support for composer
-RUN chmod 700 \
-        /usr/local/bin/docker-php-entrypoint \
-        /usr/local/bin/composer
-
-# Install composer
-RUN curl -sS https://getcomposer.org/installer | php -- \
-        --filename=composer.phar \
-        --install-dir=/usr/local/bin && \
-    composer clear-cache
+RUN chmod 700 /usr/local/bin/docker-php-entrypoint
 
 # Enable mod_rewrite for images with apache
 RUN if command -v a2enmod >/dev/null 2>&1; then \
-        a2enmod rewrite headers \
-    ;fi
+        a2enmod rewrite headers; \
+    fi
 
 # Application environment
 WORKDIR /app
