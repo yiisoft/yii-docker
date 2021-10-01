@@ -4,6 +4,8 @@
 ARG PHP_BASE_IMAGE_VERSION
 FROM php:${PHP_BASE_IMAGE_VERSION}
 
+RUN apt-get update
+
 # Install system packages for PHP extensions recommended for Yii
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 # See https://github.com/mlocati/docker-php-extension-installer#supported-php-extensions
@@ -29,11 +31,15 @@ RUN rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN install-php-extensions @composer
 RUN composer global clear-cache
 
+RUN if [ -d /usr/local/bin/docker-php-entrypoint ]; then \
+    chmod 700 /usr/local/bin/docker-php-entrypoint; \
+    fi
+
 # Set default ENV variables
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     PHP_USER_ID=33 \
     PHP_ENABLE_XDEBUG=0 \
-    PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
+    PATH=/app:/app/vendor/bin:$PATH \
     TERM=linux
 
 # Install node (for asset management with foxy)
@@ -48,10 +54,6 @@ RUN if [ `echo "$VERSION_XDEBUG" | grep -cE [3][.][0-9]+[.][0-9]+.*` = 1 ]; then
         rm /usr/local/etc/php/conf.d/xdebug2.ini; \
     else \
         rm /usr/local/etc/php/conf.d/xdebug3.ini; \
-    fi
-
-RUN if [ -a /usr/local/bin/docker-php-entrypoint ]; then \
-    chmod 700 /usr/local/bin/docker-php-entrypoint; \
     fi
 
 # Enable mod_rewrite for images with apache
