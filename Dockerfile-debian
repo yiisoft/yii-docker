@@ -1,0 +1,128 @@
+# PHP Docker image for Yii 3.x Framework runtime
+# ==============================================
+
+ARG PHP_BASE_IMAGE_VERSION
+FROM php:${PHP_BASE_IMAGE_VERSION} as min
+
+# Install required system packages for PHP extensions for Yii 3.x Framework
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+RUN install-php-extensions \
+        intl
+
+# Environment settings
+ENV PHP_USER_ID=33 \
+    PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
+    TERM=linux
+
+# Add configuration files
+COPY image-files/min/ /
+
+# Enable mod_rewrite for images with apache
+RUN if command -v a2enmod >/dev/null 2>&1; then \
+        a2enmod rewrite headers \
+    ;fi
+
+# Application environment
+WORKDIR /app
+
+
+FROM min as dev
+
+# Install common system packages for PHP extensions recommended for Yii 2.0 Framework
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+RUN install-php-extensions \
+        soap \
+        zip \
+        bcmath \
+        exif \
+        gd \
+        opcache \
+        pdo_mysql \
+        pdo_pgsql \
+        imagick \
+        mongodb \
+        xdebug
+
+COPY image-files/dev/ /
+
+# Disable xdebug by default (see PHP_ENABLE_XDEBUG)
+RUN rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+
+RUN if [ `echo "$VERSION_XDEBUG" | grep -cE [3][.][0-9]+[.][0-9]+.*` = 1 ]; then \
+        rm /usr/local/etc/php/conf.d/xdebug2.ini; \
+    else \
+        rm /usr/local/etc/php/conf.d/xdebug3.ini; \
+    fi
+
+# Add GITHUB_API_TOKEN support for composer
+RUN chmod 700 \
+        /usr/local/bin/docker-php-entrypoint \
+        /usr/local/bin/composer
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- \
+        --filename=composer.phar \
+        --install-dir=/usr/local/bin && \
+    composer clear-cache
+
+# Install node (for asset management with foxy)
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g yarn
+
+# Environment settings
+ENV COMPOSER_ALLOW_SUPERUSER=1 \
+    PHP_ENABLE_XDEBUG=0
+
+
+FROM min as nginx-min
+
+# Install nginx
+RUN apt-get update \
+ && apt-get install -y --force-yes \
+            nginx-full \
+            cron \
+            supervisor \
+            procps \
+        --no-install-recommends && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Add configuration files
+COPY image-files/nginx/ /
+
+# forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+ && ln -sf /dev/stderr /var/log/nginx/error.log \
+ && ln -sf /usr/sbin/cron /usr/sbin/crond
+
+CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+
+EXPOSE 80 443
+
+
+FROM dev as nginx-dev
+
+# Install nginx
+RUN apt-get update \
+ && apt-get install -y --force-yes \
+            nginx-full \
+            cron \
+            supervisor \
+            procps \
+        --no-install-recommends && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Add configuration files
+COPY image-files/nginx/ /
+
+# forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+ && ln -sf /dev/stderr /var/log/nginx/error.log \
+ && ln -sf /usr/sbin/cron /usr/sbin/crond
+
+CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+
+EXPOSE 80 443

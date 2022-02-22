@@ -1,6 +1,10 @@
 version: '2'
 services:
 
-  php:
-    ports:
-      - '8000:80'
+    php-min:
+        ports:
+            - '8101:80'
+
+    php-dev:
+        ports:
+            - '8102:80'
