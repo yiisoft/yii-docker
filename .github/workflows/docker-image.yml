@@ -46,9 +46,11 @@ jobs:
     - name: Test PHP version and Xdebug only loaded by ENV
       run: |
         docker-compose run --rm php-min php -v -- | grep "Xdebug" && exit 5
-        docker-compose run --rm -e PHP_ENABLE_XDEBUG=1 php-min php -v -- | grep "Xdebug"
+        docker-compose run --rm -e PHP_ENABLE_XDEBUG=1 php-dev php -v -- | grep "Xdebug"
     - name: Test Yii requirements
-      run: docker-compose run --rm php-min php /tests/requirements.php
+      run: |
+        docker-compose run --rm php-min php /tests/requirements.php
+        docker-compose run --rm php-dev php /tests/requirements.php
     - name: Test installation & framework
       run: |
           docker-compose run --rm -w /yii-dev-tool php-dev composer install
