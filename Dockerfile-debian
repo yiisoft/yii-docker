@@ -16,6 +16,8 @@ ENV PHP_USER_ID=33 \
 
 # Add configuration files
 COPY image-files/min/ /
+RUN chmod 700 \
+        /usr/local/bin/docker-php-entrypoint
 
 # Enable mod_rewrite for images with apache
 RUN if command -v a2enmod >/dev/null 2>&1; then \
