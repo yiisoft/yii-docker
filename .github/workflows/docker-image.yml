@@ -18,6 +18,10 @@ jobs:
            dockerfile-flavour: "debian"
          - php-base-image-version: "8.0-apache"
            dockerfile-flavour: "debian"
+         - php-base-image-version: "8.1-fpm"
+           dockerfile-flavour: "debian"
+         - php-base-image-version: "8.1-apache"
+           dockerfile-flavour: "debian"
       fail-fast: false
     env:
       PHP_IMAGE_NAME: "yiisoftware/yii-php"
