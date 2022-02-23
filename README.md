@@ -26,15 +26,27 @@ The `Dockerfile`(s) of this repository are designed to build from different PHP-
 - includes Xdebug (not loaded by default)
 - ready for handling client-side packages
 - bash auto-completion
+- `fpm-nginx` images with built-in webserver (like Apache)
 
 ### Available versions for `yiisoftware/yii-php`
 
+Minimal images
+
 ```
-8.0-apache, 7.4-apache,
-8.0-fpm, 7.4-fpm
+8-1-apache-min, 8.0-apache-min, 7.4-apache-min,
+8.1-fpm-min, 8.0-fpm-min, 7.4-fpm-min
+8.1-fpm-nginx-min, 8.0-fpm-nginx-min, 7.4-fpm-nginx-min
 ```
 
-Inlcudes `npm`.
+Development images, include `npm` and `composer`.
+
+```
+8-1-apache, 8.0-apache, 7.4-apache,
+8.1-fpm, 8.0-fpm, 7.4-fpm
+8.1-fpm-nginx, 8.0-fpm-nginx, 7.4-fpm-nginx
+```
+
+
 
 ## Setup
 
