@@ -2,9 +2,22 @@ version: '2'
 services:
 
     php-nginx-min:
+        extends:
+            file: docker-compose.yml
+            service: php-min
+        build:
+            target: nginx-min
+        image: ${PHP_IMAGE_NAME}:${PHP_BASE_IMAGE_VERSION}${PHP_IMAGE_VERSION_SUFFIX}-nginx-min
         ports:
             - '8201:80'
 
     php-nginx-dev:
+        extends:
+            file: docker-compose.yml
+            service: php-min
+        build:
+            target: nginx-dev
+        image: ${PHP_IMAGE_NAME}:${PHP_BASE_IMAGE_VERSION}${PHP_IMAGE_VERSION_SUFFIX}-nginx
         ports:
             - '8202:80'
+
