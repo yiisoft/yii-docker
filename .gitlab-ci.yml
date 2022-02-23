@@ -20,9 +20,10 @@ build:
     name: ${DOCKERFILE_FLAVOUR}/php-${PHP_BASE_IMAGE_VERSION}
   script:
     - docker-compose build
-    - docker-compose run --rm php php -v
-    - docker-compose run --rm php php /tests/requirements.php
-    - docker-compose run --rm -w /yii-dev-tool php composer install
+    - docker-compose run --rm php-min php -v
+    - docker-compose run --rm php-min php /tests/requirements.php
+    - docker-compose run --rm php-dev php /tests/requirements.php
+    - docker-compose run --rm -w /yii-dev-tool php-dev composer install
       # TODO: install and test "core" packages
     #- docker-compose run --rm -w /yii-dev-tool php php -d error_reporting="E_ALL ^ E_DEPRECATED" vendor/bin/phpunit tests/framework/ --exclude db
-    - docker-compose run --rm php npm -v
+    - docker-compose run --rm php-dev npm -v
