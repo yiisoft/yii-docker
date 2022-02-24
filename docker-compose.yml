@@ -1,22 +1,31 @@
 version: '2'
 services:
 
-  php:
-    build:
-      dockerfile: Dockerfile-${DOCKERFILE_FLAVOUR}
-      context: 'php'
-      args:
-        - PHP_BASE_IMAGE_VERSION=${PHP_BASE_IMAGE_VERSION}
-    image: ${PHP_IMAGE_NAME}:${PHP_BASE_IMAGE_VERSION}${PHP_IMAGE_VERSION_SUFFIX}
-    environment:
-      - GITHUB_API_TOKEN=${GITHUB_API_TOKEN}
-      - PHP_ENABLE_XDEBUG
-      - TEST_RUNTIME_PATH=/tmp/runtime
-    volumes:
-      - ./tests:/tests:delegated
-      # Framework testing
-      - ./_host-volumes/yii-dev-tool:/yii-dev-tool:delegated
-      # Application testing
-      - ./_host-volumes/app:/app:delegated
-      # Composer cache
-      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+    php-min:
+        build:
+            dockerfile: Dockerfile-${DOCKERFILE_FLAVOUR}
+            context: .
+            target: min
+            args:
+                - PHP_BASE_IMAGE_VERSION
+        image: ${PHP_IMAGE_NAME}:${PHP_BASE_IMAGE_VERSION}${PHP_IMAGE_VERSION_SUFFIX}-min
+        environment:
+            - GITHUB_API_TOKEN=${GITHUB_API_TOKEN}
+            - PHP_ENABLE_XDEBUG
+            - TEST_RUNTIME_PATH=/tmp/runtime
+        volumes:
+            - ./tests:/tests:delegated
+            # Framework testing
+            - ./_host-volumes/yii-dev-tool:/yii-dev-tool:delegated
+            # Application testing
+            - ./_host-volumes/app:/app:delegated
+            # Composer cache
+            - ~/.composer-docker/cache:/root/.composer/cache:delegated
+
+    php-dev:
+        extends:
+            service: php-min
+        build:
+            target: dev
+        image: ${PHP_IMAGE_NAME}:${PHP_BASE_IMAGE_VERSION}${PHP_IMAGE_VERSION_SUFFIX}
+
