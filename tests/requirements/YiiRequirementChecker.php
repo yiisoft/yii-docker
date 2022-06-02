@@ -28,7 +28,10 @@ if (version_compare(PHP_VERSION, '4.3', '<')) {
  *         'memo' => 'PHP extension "some_extension" required',
  *     ),
  * );
- * $requirementsChecker->checkYii()->check($requirements)->render();
+ * $requirementsChecker
+ *     ->checkYii()
+ *     ->check($requirements)
+ *     ->render();
  * ```
  *
  * If you wish to render the report with your own representation, use [[getResult()]] instead of [[render()]]
