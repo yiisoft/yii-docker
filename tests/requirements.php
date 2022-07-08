@@ -141,4 +141,7 @@ if (!version_compare(phpversion(), '5.5', '>=')) {
     ];
 }
 
-$requirementsChecker->checkYii()->check($requirements)->render();
+$requirementsChecker
+    ->checkYii()
+    ->check($requirements)
+    ->render();
