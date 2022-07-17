@@ -7,7 +7,8 @@ FROM php:${PHP_BASE_IMAGE_VERSION} as min
 # Install required system packages for PHP extensions for Yii 3.x Framework
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 RUN install-php-extensions \
-        intl
+        intl \
+        sockets
 
 # Environment settings
 ENV PHP_USER_ID=33 \
