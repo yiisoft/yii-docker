@@ -1,5 +1,19 @@
 ## Installing additional extensions
 
+It is recommended to install additional PHP extensions with https://github.com/mlocati/docker-php-extension-installer
+
+```dockerfile
+FROM yiisoftware/yii-php:8.1-apache-min
+RUN install-php-extensions \
+        <EXTENSION_NAME>-stable
+```
+
+---
+
+## Custom installations
+
+This section is mostly deprecated and exists only for reference.
+
 ### Composer asset plugin
 
     RUN composer global require "fxp/composer-asset-plugin:^1.4.2"

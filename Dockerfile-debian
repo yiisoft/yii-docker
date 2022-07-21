@@ -7,8 +7,7 @@ FROM php:${PHP_BASE_IMAGE_VERSION} as min
 # Install required system packages for PHP extensions for Yii 3.x Framework
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 RUN install-php-extensions \
-        intl \
-        sockets
+        intl-stable
 
 # Environment settings
 ENV PHP_USER_ID=33 \
@@ -40,19 +39,20 @@ RUN apt-get update && \
         rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install common system packages for PHP extensions recommended for Yii 2.0 Framework
-COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 RUN install-php-extensions \
-        soap \
-        zip \
-        bcmath \
-        exif \
-        gd \
-        opcache \
-        pdo_mysql \
-        pdo_pgsql \
-        imagick \
-        mongodb \
-        xdebug
+        soap-stable \
+        zip-stable \
+        bcmath-stable \
+        exif-stable \
+        gd-stable \
+        opcache-stable \
+        pdo_mysql-stable \
+        pdo_pgsql-stable \
+        imagick-stable \
+        mongodb-stable \
+        xdebug-stable \
+        sockets-stable
+
 
 COPY image-files/dev/ /
 
