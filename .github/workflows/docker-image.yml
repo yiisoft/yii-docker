@@ -24,6 +24,11 @@ jobs:
            compose-file: "docker-compose.yml:docker-compose.fpm-nginx.yml"
          - php-base-image-version: "8.1-apache"
            dockerfile-flavour: "debian"
+         - php-base-image-version: "8.2-fpm"
+           dockerfile-flavour: "debian"
+           compose-file: "docker-compose.yml:docker-compose.fpm-nginx.yml"
+         - php-base-image-version: "8.2-apache"
+           dockerfile-flavour: "debian"
       fail-fast: false
     env:
       PHP_IMAGE_NAME: "yiisoftware/yii-php"
