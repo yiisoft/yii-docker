@@ -1,7 +1,4 @@
 <p align="center">
-    <a href="https://www.docker.com/" target="_blank">
-        <img src="https://www.docker.com/sites/default/files/mono_vertical_large.png" height="100px">
-    </a>
     <h1 align="center">Yii 3.x PHP Docker Image</h1>
     <br>
 </p>
@@ -33,17 +30,17 @@ The `Dockerfile`(s) of this repository are designed to build from different PHP-
 Minimal images
 
 ```
-8-1-apache-min, 8.0-apache-min
-8.1-fpm-min, 8.0-fpm-min
-8.1-fpm-nginx-min, 8.0-fpm-nginx-min
+8-2-apache-min, 8-1-apache-min, 8.0-apache-min
+8.2-fpm-min, 8.1-fpm-min, 8.0-fpm-min
+8.2-fpm-nginx-min, 8.1-fpm-nginx-min, 8.0-fpm-nginx-min
 ```
 
 Development images, include `npm` and `composer`.
 
 ```
-8-1-apache, 8.0-apache
-8.1-fpm, 8.0-fpm
-8.1-fpm-nginx, 8.0-fpm-nginx
+8.2-apache, 8.1-apache, 8.0-apache
+8.2-fpm, 8.1-fpm, 8.0-fpm
+8.2-fpm-nginx, 8.1-fpm-nginx, 8.0-fpm-nginx
 ```
 
 Deprecated images
