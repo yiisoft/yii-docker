@@ -97,4 +97,11 @@ return [
         'by'        => '<a href="http://php.net/manual/en/book.dom.php">Document Object Model</a>',
         'memo'      => 'Required for REST API to send XML responses via <code>yii\web\XmlResponseFormatter</code>.',
     ],
+    [
+        'name'      => 'pcntl',
+        'mandatory' => false,
+        'condition' => extension_loaded('pcntl'),
+        'by'        => '<a href="https://www.php.net/manual/de/book.pcntl.php">Process Control</a>',
+        'memo'      => 'Recommended for yii2-queue CLI operations',
+    ],
 ];
