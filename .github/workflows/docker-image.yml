@@ -54,14 +54,13 @@ jobs:
         docker version
         docker info
         docker-compose version
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
     - name: Build Image
-      uses: docker/bake-action@v2
-      with:
-        files: docker-compose.yml
-        load: true    
-        #run: docker-compose build --build-arg X_LEGACY_GD_LIB=$X_LEGACY_GD_LIB
+      run: docker buildx bake -f ./docker-compose.yml --load
+      #run: docker-compose build --build-arg X_LEGACY_GD_LIB=$X_LEGACY_GD_LIB
     - name: Test PHP version and Xdebug only loaded by ENV
       run: |
         docker-compose run --rm php-min php -v -- | grep "Xdebug" && exit 5
@@ -80,8 +79,6 @@ jobs:
     #  with:
     #    username: ${{ secrets.DOCKERHUB_USER }}
     #    password: ${{ secrets.DOCKERHUB_PASS }}
-    #- name: Push Image
+    #- name: Push docker image
     #  if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master'
-    #  uses: docker/bake-action@v2
-    #  with:
-    #    push: true
+    #  run: docker-compose push
