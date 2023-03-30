@@ -59,7 +59,7 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
     - name: Build Image
-      run: docker buildx bake -f ./docker-compose.yml --load
+      run: docker buildx bake -f ./docker-compose.yml
       #run: docker-compose build --build-arg X_LEGACY_GD_LIB=$X_LEGACY_GD_LIB
     - name: Test PHP version and Xdebug only loaded by ENV
       run: |
