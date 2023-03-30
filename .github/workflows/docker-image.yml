@@ -59,6 +59,7 @@ jobs:
     - name: Build Image
       uses: docker/bake-action@v2
       with:
+        files: docker-compose.yml
         load: true    
         #run: docker-compose build --build-arg X_LEGACY_GD_LIB=$X_LEGACY_GD_LIB
     - name: Test PHP version and Xdebug only loaded by ENV
