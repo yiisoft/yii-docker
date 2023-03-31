@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Application requirement checker script.
  *
@@ -11,16 +13,16 @@
  */
 
 // you may need to adjust this path to the correct Yii framework path
-$frameworkPath = dirname(__FILE__).'/';
+$frameworkPath = __DIR__ . '/';
 
 if (!is_dir($frameworkPath)) {
     echo '<h1>Error</h1>';
     echo '<p><strong>The path to yii framework seems to be incorrect.</strong></p>';
-    echo '<p>You need to install Yii framework via composer or adjust the framework path in file <abbr title="'.__FILE__.'">'.basename(__FILE__).'</abbr>.</p>';
-    echo '<p>Please refer to the <abbr title="'.dirname(__FILE__).'/README.md">README</abbr> on how to install Yii.</p>';
+    echo '<p>You need to install Yii framework via composer or adjust the framework path in file <abbr title="' . __FILE__ . '">' . basename(__FILE__) . '</abbr>.</p>';
+    echo '<p>Please refer to the <abbr title="' . __DIR__ . '/README.md">README</abbr> on how to install Yii.</p>';
 }
 
-require_once $frameworkPath.'/requirements/YiiRequirementChecker.php';
+require_once $frameworkPath . '/requirements/YiiRequirementChecker.php';
 $requirementsChecker = new YiiRequirementChecker();
 
 $gdMemo = $imagickMemo = 'Either GD PHP extension with FreeType support or ImageMagick PHP extension with PNG support is required for image CAPTCHA.';
@@ -51,38 +53,38 @@ if (extension_loaded('gd')) {
 $requirements = [
     // Database :
     [
-        'name'      => 'PDO extension',
+        'name' => 'PDO extension',
         'mandatory' => true,
         'condition' => extension_loaded('pdo'),
-        'by'        => 'All DB-related classes',
+        'by' => 'All DB-related classes',
     ],
     [
-        'name'      => 'PDO SQLite extension',
+        'name' => 'PDO SQLite extension',
         'mandatory' => false,
         'condition' => extension_loaded('pdo_sqlite'),
-        'by'        => 'All DB-related classes',
-        'memo'      => 'Required for SQLite database.',
+        'by' => 'All DB-related classes',
+        'memo' => 'Required for SQLite database.',
     ],
     [
-        'name'      => 'PDO MySQL extension',
+        'name' => 'PDO MySQL extension',
         'mandatory' => false,
         'condition' => extension_loaded('pdo_mysql'),
-        'by'        => 'All DB-related classes',
-        'memo'      => 'Required for MySQL database.',
+        'by' => 'All DB-related classes',
+        'memo' => 'Required for MySQL database.',
     ],
     [
-        'name'      => 'PDO PostgreSQL extension',
+        'name' => 'PDO PostgreSQL extension',
         'mandatory' => false,
         'condition' => extension_loaded('pdo_pgsql'),
-        'by'        => 'All DB-related classes',
-        'memo'      => 'Required for PostgreSQL database.',
+        'by' => 'All DB-related classes',
+        'memo' => 'Required for PostgreSQL database.',
     ],
     [
-        'name'      => 'MongoDB extension',
+        'name' => 'MongoDB extension',
         'mandatory' => false,
         'condition' => extension_loaded('mongodb'),
-        'by'        => '<a href="https://www.yiiframework.com/extension/yiisoft/yii2-mongodb/doc/guide/2.2/en">MongoDB</a>',
-        'memo'      => 'Required for MongoDB database.',
+        'by' => '<a href="https://www.yiiframework.com/extension/yiisoft/yii2-mongodb/doc/guide/2.2/en">MongoDB</a>',
+        'memo' => 'Required for MongoDB database.',
     ],
     // Cache :
     /*array(
@@ -94,50 +96,50 @@ $requirements = [
     ),*/
     // CAPTCHA:
     [
-        'name'      => 'GD PHP extension with FreeType support',
+        'name' => 'GD PHP extension with FreeType support',
         'mandatory' => false,
         'condition' => $gdOK,
-        'by'        => '<a href="http://www.yiiframework.com/doc-2.0/yii-captcha-captcha.html">Captcha</a>',
-        'memo'      => $gdMemo,
+        'by' => '<a href="http://www.yiiframework.com/doc-2.0/yii-captcha-captcha.html">Captcha</a>',
+        'memo' => $gdMemo,
     ],
     [
-        'name'      => 'ImageMagick PHP extension with PNG support',
+        'name' => 'ImageMagick PHP extension with PNG support',
         'mandatory' => false,
         'condition' => $imagickOK,
-        'by'        => '<a href="http://www.yiiframework.com/doc-2.0/yii-captcha-captcha.html">Captcha</a>',
-        'memo'      => $imagickMemo,
+        'by' => '<a href="http://www.yiiframework.com/doc-2.0/yii-captcha-captcha.html">Captcha</a>',
+        'memo' => $imagickMemo,
     ],
     // PHP ini :
     'phpExposePhp' => [
-        'name'      => 'Expose PHP',
+        'name' => 'Expose PHP',
         'mandatory' => false,
         'condition' => $requirementsChecker->checkPhpIniOff('expose_php'),
-        'by'        => 'Security reasons',
-        'memo'      => '"expose_php" should be disabled at php.ini',
+        'by' => 'Security reasons',
+        'memo' => '"expose_php" should be disabled at php.ini',
     ],
     'phpAllowUrlInclude' => [
-        'name'      => 'PHP allow url include',
+        'name' => 'PHP allow url include',
         'mandatory' => false,
         'condition' => $requirementsChecker->checkPhpIniOff('allow_url_include'),
-        'by'        => 'Security reasons',
-        'memo'      => '"allow_url_include" should be disabled at php.ini',
+        'by' => 'Security reasons',
+        'memo' => '"allow_url_include" should be disabled at php.ini',
     ],
     'phpSmtp' => [
-        'name'      => 'PHP mail SMTP',
+        'name' => 'PHP mail SMTP',
         'mandatory' => false,
         'condition' => strlen(ini_get('SMTP')) > 0,
-        'by'        => 'Email sending',
-        'memo'      => 'PHP mail SMTP server required',
+        'by' => 'Email sending',
+        'memo' => 'PHP mail SMTP server required',
     ],
 ];
 
 // OPcache check
-if (!version_compare(phpversion(), '5.5', '>=')) {
+if (!version_compare(PHP_VERSION, '5.5', '>=')) {
     $requirements[] = [
-        'name'      => 'APC extension',
+        'name' => 'APC extension',
         'mandatory' => false,
         'condition' => extension_loaded('apc'),
-        'by'        => '<a href="http://www.yiiframework.com/doc-2.0/yii-caching-apccache.html">ApcCache</a>',
+        'by' => '<a href="http://www.yiiframework.com/doc-2.0/yii-caching-apccache.html">ApcCache</a>',
     ];
 }
 
