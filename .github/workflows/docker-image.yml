@@ -95,7 +95,9 @@ jobs:
         set: |
           *.platform=linux/amd64
     - name: Build and push docker image (arm64)
-      if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master' && github.event_name == 'workflow_dispatch'
+      if: |
+          (startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master') &&
+          (github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
       uses: docker/bake-action@v2
       with:
         files: docker-compose.yml
