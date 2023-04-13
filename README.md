@@ -27,7 +27,9 @@ The `Dockerfile`(s) of this repository are designed to build from different PHP-
 
 ### Available versions for `yiisoftware/yii-php`
 
-Minimal images
+The following images are built on a *weekly* basis for **arm64** and **amd64**. For regular commits on **master** we only build images for **amd64** suffixed with `-latest`/`-latest-min`.
+
+#### Minimal images
 
 ```
 8-2-apache-min, 8-1-apache-min, 8.0-apache-min
@@ -35,7 +37,7 @@ Minimal images
 8.2-fpm-nginx-min, 8.1-fpm-nginx-min, 8.0-fpm-nginx-min
 ```
 
-Development images, include `npm` and `composer`.
+#### Development images, include `npm` and `composer`.
 
 ```
 8.2-apache, 8.1-apache, 8.0-apache
@@ -43,7 +45,7 @@ Development images, include `npm` and `composer`.
 8.2-fpm-nginx, 8.1-fpm-nginx, 8.0-fpm-nginx
 ```
 
-Deprecated images
+#### Deprecated images
 
 ```
 7.4-apache-min, 7.4-fpm-min, 7.4-fpm-nginx-min, 7.4-apache, 7.4-fpm, 7.4-fpm-nginx
