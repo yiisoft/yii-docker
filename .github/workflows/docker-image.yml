@@ -36,7 +36,7 @@ jobs:
       PHP_BASE_IMAGE_VERSION: ${{ matrix.php-base-image-version }}
       DOCKERFILE_FLAVOUR: ${{ matrix.dockerfile-flavour }}
       COMPOSE_FILE: ${{ matrix.compose-file }}
-      COMPOSE_PATH_SEPARATOR: ,
+      COMPOSE_PATH_SEPARATOR: ","
     steps:
     - name: Checkout
       uses: actions/checkout@v3
