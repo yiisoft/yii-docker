@@ -17,17 +17,17 @@ jobs:
        include:
          - php-base-image-version: "8.0-fpm"
            dockerfile-flavour: "debian"
-           compose-file: "docker-compose.yml:docker-compose.fpm-nginx.yml"
+           compose-file: "docker-compose.yml,docker-compose.fpm-nginx.yml"
          - php-base-image-version: "8.0-apache"
            dockerfile-flavour: "debian"
          - php-base-image-version: "8.1-fpm"
            dockerfile-flavour: "debian"
-           compose-file: "docker-compose.yml:docker-compose.fpm-nginx.yml"
+           compose-file: "docker-compose.yml,docker-compose.fpm-nginx.yml"
          - php-base-image-version: "8.1-apache"
            dockerfile-flavour: "debian"
          - php-base-image-version: "8.2-fpm"
            dockerfile-flavour: "debian"
-           compose-file: "docker-compose.yml:docker-compose.fpm-nginx.yml"
+           compose-file: "docker-compose.yml,docker-compose.fpm-nginx.yml"
          - php-base-image-version: "8.2-apache"
            dockerfile-flavour: "debian"
       fail-fast: false
@@ -36,6 +36,7 @@ jobs:
       PHP_BASE_IMAGE_VERSION: ${{ matrix.php-base-image-version }}
       DOCKERFILE_FLAVOUR: ${{ matrix.dockerfile-flavour }}
       COMPOSE_FILE: ${{ matrix.compose-file }}
+      COMPOSE_PATH_SEPARATOR: ,
     steps:
     - name: Checkout
       uses: actions/checkout@v3
