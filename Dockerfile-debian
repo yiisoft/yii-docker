@@ -79,7 +79,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
     composer clear-cache
 
 # Install node (for asset management with foxy)
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs && \
     npm install -g yarn
 
