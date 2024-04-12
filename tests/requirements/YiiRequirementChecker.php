@@ -1,9 +1,10 @@
 <?php
+
 /**
- * @link http://www.yiiframework.com/
+ * @link https://www.yiiframework.com/
  *
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license https://www.yiiframework.com/license/
  */
 if (version_compare(PHP_VERSION, '4.3', '<')) {
     echo 'At least PHP 4.3 is required to run this script!';
@@ -77,7 +78,7 @@ class YiiRequirementChecker
             $requirements = require $requirements;
         }
         if (!is_array($requirements)) {
-            $this->usageError('Requirements must be an array, "'.gettype($requirements).'" has been given!');
+            $this->usageError('Requirements must be an array, "' . gettype($requirements) . '" has been given!');
         }
         if (!isset($this->result) || !is_array($this->result)) {
             $this->result = [
@@ -119,7 +120,7 @@ class YiiRequirementChecker
      */
     public function checkYii()
     {
-        return $this->check(dirname(__FILE__).DIRECTORY_SEPARATOR.'requirements.php');
+        return $this->check(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'requirements.php');
     }
 
     /**
@@ -163,11 +164,11 @@ class YiiRequirementChecker
         if (!isset($this->result)) {
             $this->usageError('Nothing to render!');
         }
-        $baseViewFilePath = dirname(__FILE__).DIRECTORY_SEPARATOR.'views';
+        $baseViewFilePath = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'views';
         if (!empty($_SERVER['argv'])) {
-            $viewFileName = $baseViewFilePath.DIRECTORY_SEPARATOR.'console'.DIRECTORY_SEPARATOR.'index.php';
+            $viewFileName = $baseViewFilePath . DIRECTORY_SEPARATOR . 'console' . DIRECTORY_SEPARATOR . 'index.php';
         } else {
-            $viewFileName = $baseViewFilePath.DIRECTORY_SEPARATOR.'web'.DIRECTORY_SEPARATOR.'index.php';
+            $viewFileName = $baseViewFilePath . DIRECTORY_SEPARATOR . 'web' . DIRECTORY_SEPARATOR . 'index.php';
         }
         $this->renderViewFile($viewFileName, $this->result);
     }
@@ -243,7 +244,7 @@ class YiiRequirementChecker
      */
     public function compareByteSize($a, $b, $compare = '>=')
     {
-        $compareExpression = '('.$this->getByteSize($a).$compare.$this->getByteSize($b).')';
+        $compareExpression = '(' . $this->getByteSize($a) . $compare . $this->getByteSize($b) . ')';
 
         return $this->evaluateExpression($compareExpression);
     }
@@ -364,7 +365,7 @@ class YiiRequirementChecker
             }
         }
         if (!array_key_exists('name', $requirement)) {
-            $requirement['name'] = is_numeric($requirementKey) ? 'Requirement #'.$requirementKey : $requirementKey;
+            $requirement['name'] = is_numeric($requirementKey) ? 'Requirement #' . $requirementKey : $requirementKey;
         }
         if (!array_key_exists('mandatory', $requirement)) {
             if (array_key_exists('required', $requirement)) {
@@ -404,7 +405,7 @@ class YiiRequirementChecker
      */
     public function evaluateExpression($expression)
     {
-        return eval('return '.$expression.';');
+        return eval('return ' . $expression . ';');
     }
 
     /**

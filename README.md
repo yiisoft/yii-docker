@@ -8,9 +8,7 @@
 **Development**
 [![pipeline status](https://gitlab.com/yiisoft/yii-docker/badges/master/pipeline.svg)](https://gitlab.com/yiisoft/yii-docker/commits/master)
 
-
-This is the repo of the official [Yii 3.x Framework](http://www.yiiframework.com/) image on [DockerHub](https://hub.docker.com/r/yiisoftware/yii-php/) for PHP.
-
+This is the repo of the official [Yii 3.x Framework](https://www.yiiframework.com/) image on [DockerHub](https://hub.docker.com/r/yiisoftware/yii-php/) for PHP.
 
 ## About
 
@@ -38,7 +36,7 @@ The following images are built on a *weekly* basis for **arm64** and **amd64**. 
 8.2-fpm-nginx-min, 8.1-fpm-nginx-min, 8.0-fpm-nginx-min
 ```
 
-#### Development images, include `npm` and `composer`.
+#### Development images, include `npm` and `composer`
 
 ```
 8.2-apache, 8.1-apache, 8.0-apache
@@ -52,7 +50,6 @@ The following images are built on a *weekly* basis for **arm64** and **amd64**. 
 7.4-apache-min, 7.4-fpm-min, 7.4-fpm-nginx-min, 7.4-apache, 7.4-fpm, 7.4-fpm-nginx
 ```
 
-
 ## Setup
 
     cp .env-dist .env
@@ -60,7 +57,6 @@ The following images are built on a *weekly* basis for **arm64** and **amd64**. 
 Adjust the versions in `.env` if you want to build a specific version.
 
 > **Note:** Please make sure to use a matching combination of `DOCKERFILE_FLAVOUR` and `PHP_BASE_IMAGE_VERSION`
-
 
 ## Configuration
 
@@ -73,7 +69,6 @@ Adjust the versions in `.env` if you want to build a specific version.
 
     docker-compose build
 
-
 ## Testing
 
     docker-compose run --rm php php /tests/requirements.php
@@ -85,7 +80,7 @@ To enable Xdebug, set `PHP_ENABLE_XDEBUG=1` in .env file
 Xdebug is configured to call ip `xdebug.remote_host` on `9005` port (not use standard port to avoid conflicts),
 so you have to configure your IDE to receive connections from that ip.
 
-If you are using macOS, you can fill `xdebug.remote_host` with `host.docker.internal`, due to a network limitation on mac (https://docs.docker.com/docker-for-mac/networking/#port-mapping)
+If you are using macOS, you can fill `xdebug.remote_host` with `host.docker.internal`, due to a network limitation on mac (<https://docs.docker.com/docker-for-mac/networking/#port-mapping>)
 
     ### (macOS) configuration
     xdebug.remote_host=host.docker.internal
@@ -93,4 +88,3 @@ If you are using macOS, you can fill `xdebug.remote_host` with `host.docker.inte
 ## Documentation
 
 More information can be found in the [docs](/docs) folder.
-
