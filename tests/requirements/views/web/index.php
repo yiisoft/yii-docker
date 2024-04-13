@@ -2,8 +2,7 @@
 /* @var $this YiiRequirementChecker */
 /* @var $summary array */
 /* @var $requirements array[] */
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
