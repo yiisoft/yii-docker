@@ -6,11 +6,7 @@ Enter the `php` container:
     composer create-project yiisoft/app /app
 ```
 
-Open in your browser:
-
-```html
-     http://127.0.0.1:8000
-```
+Open in your browser: `http://127.0.0.1:8000`
 
 When running Apache you need a configuration like the following to use `enablePrettyUrl` in `.htaccess` in your public `public` folder:
 
