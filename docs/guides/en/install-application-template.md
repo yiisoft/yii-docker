@@ -14,7 +14,7 @@ Open in your browser:
 
 When running Apache you need a configuration like the following to use `enablePrettyUrl` in `.htaccess` in your public `public` folder:
 
-```html
+```apache
     RewriteEngine on
     # If a directory or a file exists, use it directly
     RewriteCond %{REQUEST_FILENAME} !-f
