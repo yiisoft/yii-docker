@@ -14,7 +14,7 @@ This section is mostly deprecated and exists only for reference.
 
 ### Composer asset plugin
 
-```bash
+```Dockerfile
     RUN composer global require "fxp/composer-asset-plugin:^1.4.2"
 ```
 
