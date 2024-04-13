@@ -6,7 +6,7 @@ Obtenha a fonte e coloque-a em uma pasta host-volume para montá-la no contêine
 git clone https://github.com/yiisoft/yii-core _host-volumes/yii-core
 ```
 
-```information
+```Info
 Este repositório foi arquivado pelo proprietário em
 9 de setembro de 2019. Agora é somente leitura.
 

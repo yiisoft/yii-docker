@@ -82,7 +82,8 @@ so you have to configure your IDE to receive connections from that ip.
 
 If you are using macOS, you can fill `xdebug.remote_host` with `host.docker.internal`, due to a network limitation on mac (<https://docs.docker.com/docker-for-mac/networking/#port-mapping>)
 
-    ### (macOS) configuration
+### (macOS) configuration
+
     xdebug.remote_host=host.docker.internal
 
 ## Documentation
