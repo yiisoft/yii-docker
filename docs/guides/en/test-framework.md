@@ -14,7 +14,7 @@ git clone https://github.com/yiisoft/yii-core _host-volumes/yii-core
 
 Enter the container with
 
-```dockerfile
+```bash
 docker-compose run --rm -w /yii-core php bash
 ```
 
