@@ -6,13 +6,11 @@ Get the source and place it into a host-volume folder for mounting it into the c
 git clone https://github.com/yiisoft/yii-core _host-volumes/yii-core
 ```
 
-```information
-This repository has been archived by the owner on Sep 9, 2019. It is now read-only.
-
-Yii Framework 3.0 core was split into several packages and the package was deleted.
-
-Repository is kept so closed issues could be reviewed for historical reasons.
-```
+> This repository has been archived by the owner on Sep 9, 2019. It is now read-only.
+>
+> Yii Framework 3.0 core was split into several packages and the package was deleted.
+>
+> Repository is kept so closed issues could be reviewed for historical reasons.
 
 Enter the container with
 
