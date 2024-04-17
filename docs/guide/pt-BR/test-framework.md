@@ -1,11 +1,5 @@
 # Executando testes de framework
 
-Obtenha a fonte e coloque-a em uma pasta host-volume para montá-la no contêiner.
-
-```bash
-git clone https://github.com/yiisoft/yii-core _host-volumes/yii-core
-```
-
 ```Info
 Este repositório foi arquivado pelo proprietário em
 9 de setembro de 2019. Agora é somente leitura.
@@ -25,19 +19,19 @@ docker-compose run --rm -w /yii-core php bash
 
 Entre no contêiner e instale os pacotes
 
-```bash
+```shell
 composer install
 ```
 
 Execute os testes
 
-```bash
+```shell
 vendor/bin/phpunit tests/framework/ --exclude db
 ```
 
 Mudando para outra versão do framework
 
-```bash
+```shell
 git checkout 2.0.12
 ```
 

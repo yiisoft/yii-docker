@@ -2,7 +2,7 @@
 
 Os mantenedores do repositório podem acionar a construção de uma versão específica por meio da API GitLab:
 
-```bash
+```shell
     curl -X POST \
          -F token=${GITLAB_YII_DOCKER_TOKEN} \
          -F ref=master \

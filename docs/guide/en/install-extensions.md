@@ -14,7 +14,7 @@ This section is mostly deprecated and exists only for reference.
 
 ### Composer asset plugin
 
-```bash
+```shell
     RUN composer global require "fxp/composer-asset-plugin:^1.4.2"
 ```
 
@@ -22,19 +22,20 @@ This section is mostly deprecated and exists only for reference.
 
 #### Debian
 
-```bash
+```dockerfile
     RUN apt-get update && \
         apt-get -y install \
             libmcrypt-dev && \
         docker-php-ext-install \
-            mycrypt   
+            mycrypt
+
 ```
 
 ### APC
 
 *TBD*
 
-```bash
+```shell
     RUN pecl install apc
     RUN echo "extension=apcu.so" > /usr/local/etc/php/conf.d/pecl-apcu.ini
 
@@ -48,7 +49,7 @@ This section is mostly deprecated and exists only for reference.
 
 #### Debian (PHP 7)
 
-```bash
+```dockerfile
     # memcache
     ENV MEMCACHED_DEPS libmemcached-dev git
     RUN set -xe \
@@ -67,7 +68,7 @@ This section is mostly deprecated and exists only for reference.
 
 #### Debian
 
-```bash
+```dockerfile
     # Install xdebug
     RUN cd /tmp && \
         git clone git://github.com/xdebug/xdebug.git && \

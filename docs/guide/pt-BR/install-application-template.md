@@ -2,7 +2,7 @@
 
 Entre no contêiner `php`:
 
-```bash
+```shell
     composer create-project yiisoft/app /app
 ```
 

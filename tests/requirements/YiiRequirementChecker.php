@@ -3,7 +3,7 @@
 /**
  * @link https://www.yiiframework.com/
  *
- * @copyright Copyright (c) 2008 Yii Software LLC
+ * @copyright Copyright © 2008 by Yii Software (https://www.yiiframework.com/)
  * @license https://www.yiiframework.com/license/
  */
 if (version_compare(PHP_VERSION, '4.3', '<')) {

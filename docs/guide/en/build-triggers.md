@@ -2,7 +2,7 @@
 
 Repo maintainers can trigger the build of a specific version via GitLab API:
 
-```bash
+```shell
     curl -X POST \
          -F token=${GITLAB_YII_DOCKER_TOKEN} \
          -F ref=master \

@@ -30,29 +30,48 @@ The following images are built on a *weekly* basis for **arm64** and **amd64**. 
 
 #### Minimal images
 
-```
-8-2-apache-min, 8-1-apache-min, 8.0-apache-min
-8.2-fpm-min, 8.1-fpm-min, 8.0-fpm-min
-8.2-fpm-nginx-min, 8.1-fpm-nginx-min, 8.0-fpm-nginx-min
+```text
+8-2-apache-min
+8-1-apache-min
+8.0-apache-min
+8.2-fpm-min
+8.1-fpm-min
+8.0-fpm-min
+8.2-fpm-nginx-min
+8.1-fpm-nginx-min
+8.0-fpm-nginx-min
 ```
 
 #### Development images, include `npm` and `composer`
 
-```
-8.2-apache, 8.1-apache, 8.0-apache
-8.2-fpm, 8.1-fpm, 8.0-fpm
-8.2-fpm-nginx, 8.1-fpm-nginx, 8.0-fpm-nginx
+```text
+8.2-apache
+8.1-apache
+8.0-apache
+8.2-fpm
+8.1-fpm
+8.0-fpm
+8.2-fpm-nginx
+8.1-fpm-nginx
+8.0-fpm-nginx
 ```
 
 #### Deprecated images
 
-```
-7.4-apache-min, 7.4-fpm-min, 7.4-fpm-nginx-min, 7.4-apache, 7.4-fpm, 7.4-fpm-nginx
+```text
+7.4-apache-min
+7.4-fpm-min
+7.4-fpm-nginx-min
+7.4-apache
+7.4-fpm
+7.4-fpm-nginx
 ```
 
 ## Setup
 
-    cp .env-dist .env
+```shell
+cp .env-dist .env
+```
 
 Adjust the versions in `.env` if you want to build a specific version.
 
@@ -67,11 +86,15 @@ Adjust the versions in `.env` if you want to build a specific version.
 
 ## Building
 
-    docker-compose build
+```dockerfile
+docker-compose build
+```
 
 ## Testing
 
-    docker-compose run --rm php php /tests/requirements.php
+```dockerfile
+docker-compose run --rm php php /tests/requirements.php
+```
 
 ### Xdebug
 
@@ -84,8 +107,9 @@ If you are using macOS, you can fill `xdebug.remote_host` with `host.docker.inte
 
 ### (macOS) configuration
 
-    xdebug.remote_host=host.docker.internal
+> xdebug.remote_host=host.docker.internal
 
 ## Documentation
 
-More information can be found in the [docs](/docs) folder.
+- Guide: [English](docs/guide/en), [Portuguese - Brazil](docs/guide/pt-BR)
+- More information can be found in the [Internals](docs/internals.md).
