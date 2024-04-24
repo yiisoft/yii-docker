@@ -112,7 +112,6 @@ If you are using macOS, you can fill `xdebug.remote_host` with `host.docker.inte
 ## Documentation
 
 - [Guide](docs/guide/README.md)
-- [Internals](docs/internals.md)
 
 ## Support
 
