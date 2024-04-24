@@ -92,7 +92,7 @@ docker-compose build
 
 ## Testing
 
-```dockerfile
+```shell
 docker-compose run --rm php php /tests/requirements.php
 ```
 
