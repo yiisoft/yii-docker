@@ -86,7 +86,7 @@ Adjust the versions in `.env` if you want to build a specific version.
 
 ## Building
 
-```dockerfile
+```shell
 docker-compose build
 ```
 
