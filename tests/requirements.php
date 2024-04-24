@@ -12,16 +12,16 @@
  */
 
 // you may need to adjust this path to the correct Yii framework path
-$frameworkPath = dirname(__FILE__) . '/';
+$frameworkPath = dirname(__FILE__).'/';
 
 if (!is_dir($frameworkPath)) {
     echo '<h1>Error</h1>';
     echo '<p><strong>The path to yii framework seems to be incorrect.</strong></p>';
-    echo '<p>You need to install Yii framework via composer or adjust the framework path in file <abbr title="' . __FILE__ . '">' . basename(__FILE__) . '</abbr>.</p>';
-    echo '<p>Please refer to the <abbr title="' . dirname(__FILE__) . '/README.md">README</abbr> on how to install Yii.</p>';
+    echo '<p>You need to install Yii framework via composer or adjust the framework path in file <abbr title="'.__FILE__.'">'.basename(__FILE__).'</abbr>.</p>';
+    echo '<p>Please refer to the <abbr title="'.dirname(__FILE__).'/README.md">README</abbr> on how to install Yii.</p>';
 }
 
-require_once $frameworkPath . '/requirements/YiiRequirementChecker.php';
+require_once $frameworkPath.'/requirements/YiiRequirementChecker.php';
 $requirementsChecker = new YiiRequirementChecker();
 
 $gdMemo = $imagickMemo = 'Either GD PHP extension with FreeType support or ImageMagick PHP extension with PNG support is required for image CAPTCHA.';
