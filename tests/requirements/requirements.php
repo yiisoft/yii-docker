@@ -70,7 +70,7 @@ return [
         'memo'      => 'ICU 49.0 or higher is required when you want to use <code>#</code> placeholder in plural rules
         (for example, plural in
         <a href=\"https://www.yiiframework.com/doc-2.0/yii-i18n-formatter.html#asRelativeTime%28%29-detail\">
-        Formatter::asRelativeTime()</a>) in the <code>yii\i18n\Formatter</code> class. Your current ICU version is ' .
+        Formatter::asRelativeTime()</a>) in the <code>yii\i18n\Formatter</code> class. Your current ICU version is '.
             (defined('INTL_ICU_VERSION') ? INTL_ICU_VERSION : '(ICU is missing)').'.',
     ],
     [
@@ -81,7 +81,7 @@ return [
         'memo'      => 'ICU Data 49.1 or higher is required when you want to use <code>#</code> placeholder in plural rules
         (for example, plural in
         <a href=\"https://www.yiiframework.com/doc-2.0/yii-i18n-formatter.html#asRelativeTime%28%29-detail\">
-        Formatter::asRelativeTime()</a>) in the <code>yii\i18n\Formatter</code> class. Your current ICU Data version is ' .
+        Formatter::asRelativeTime()</a>) in the <code>yii\i18n\Formatter</code> class. Your current ICU Data version is '.
             (defined('INTL_ICU_DATA_VERSION') ? INTL_ICU_DATA_VERSION : '(ICU Data is missing)').'.',
     ],
     [
