@@ -1,6 +1,6 @@
-## Installing additional extensions
+# Instalando extensões adicionais
 
-It is recommended to install additional PHP extensions with https://github.com/mlocati/docker-php-extension-installer
+Recomenda-se instalar extensões PHP adicionais com <https://github.com/mlocati/docker-php-extension-installer>
 
 ```dockerfile
 FROM yiisoftware/yii-php:8.1-apache-min
@@ -8,33 +8,33 @@ RUN install-php-extensions \
         <EXTENSION_NAME>-stable
 ```
 
----
+## Instalações personalizadas
 
-## Custom installations
+Esta seção está praticamente obsoleta e existe apenas para referência.
 
-This section is mostly deprecated and exists only for reference.
+### Plug-in de ativos do Composer
 
-### Composer asset plugin
-
+```shell
     RUN composer global require "fxp/composer-asset-plugin:^1.4.2"
+```
 
 ### mcrypt
 
 #### Debian
 
+```dockerfile
+    RUN apt-get update && \
+        apt-get -y install \
+            libmcrypt-dev && \
+        docker-php-ext-install \
+            mycrypt   
 ```
-RUN apt-get update && \
-    apt-get -y install \
-        libmcrypt-dev && \
-    docker-php-ext-install \
-        mycrypt        
-```
-
 
 ### APC
 
-*TBD*
+*TBD* (*a ser definido*)
 
+```shell
     RUN pecl install apc
     RUN echo "extension=apcu.so" > /usr/local/etc/php/conf.d/pecl-apcu.ini
 
@@ -42,11 +42,13 @@ RUN apt-get update && \
 
     RUN docker-php-ext-enable \
         imagick
+```
 
 ### memcache
 
-#### Debian (PHP 7)     
-     
+#### Debian (PHP7)
+
+```dockerfile
     # memcache
     ENV MEMCACHED_DEPS libmemcached-dev git
     RUN set -xe \
@@ -59,11 +61,13 @@ RUN apt-get update && \
          --disable-memcached-sasl \
      && docker-php-ext-install /usr/src/php/ext/php-memcached-php7 \
      && rm -rf /usr/src/php/ext/php-memcached-php7 /tmp/memcached.zip
-     
+```
+
 ### Xdebug
 
 #### Debian
 
+```dockerfile
     # Install xdebug
     RUN cd /tmp && \
         git clone git://github.com/xdebug/xdebug.git && \
@@ -74,3 +78,4 @@ RUN apt-get update && \
         make && \
         make install && \
         rm -rf /tmp/xdebug        
+```

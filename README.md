@@ -8,9 +8,7 @@
 **Development**
 [![pipeline status](https://gitlab.com/yiisoft/yii-docker/badges/master/pipeline.svg)](https://gitlab.com/yiisoft/yii-docker/commits/master)
 
-
-This is the repo of the official [Yii 3.x Framework](http://www.yiiframework.com/) image on [DockerHub](https://hub.docker.com/r/yiisoftware/yii-php/) for PHP.
-
+This is the repo of the official [Yii 3.x Framework](https://www.yiiframework.com/) image on [DockerHub](https://hub.docker.com/r/yiisoftware/yii-php/) for PHP.
 
 ## About
 
@@ -32,35 +30,52 @@ The following images are built on a *weekly* basis for **arm64** and **amd64**. 
 
 #### Minimal images
 
-```
-8-2-apache-min, 8-1-apache-min, 8.0-apache-min
-8.2-fpm-min, 8.1-fpm-min, 8.0-fpm-min
-8.2-fpm-nginx-min, 8.1-fpm-nginx-min, 8.0-fpm-nginx-min
+```text
+8-2-apache-min
+8-1-apache-min
+8.0-apache-min
+8.2-fpm-min
+8.1-fpm-min
+8.0-fpm-min
+8.2-fpm-nginx-min
+8.1-fpm-nginx-min
+8.0-fpm-nginx-min
 ```
 
-#### Development images, include `npm` and `composer`.
+#### Development images, include `npm` and `composer`
 
-```
-8.2-apache, 8.1-apache, 8.0-apache
-8.2-fpm, 8.1-fpm, 8.0-fpm
-8.2-fpm-nginx, 8.1-fpm-nginx, 8.0-fpm-nginx
+```text
+8.2-apache
+8.1-apache
+8.0-apache
+8.2-fpm
+8.1-fpm
+8.0-fpm
+8.2-fpm-nginx
+8.1-fpm-nginx
+8.0-fpm-nginx
 ```
 
 #### Deprecated images
 
+```text
+7.4-apache-min
+7.4-fpm-min
+7.4-fpm-nginx-min
+7.4-apache
+7.4-fpm
+7.4-fpm-nginx
 ```
-7.4-apache-min, 7.4-fpm-min, 7.4-fpm-nginx-min, 7.4-apache, 7.4-fpm, 7.4-fpm-nginx
-```
-
 
 ## Setup
 
-    cp .env-dist .env
+```shell
+cp .env-dist .env
+```
 
 Adjust the versions in `.env` if you want to build a specific version.
 
 > **Note:** Please make sure to use a matching combination of `DOCKERFILE_FLAVOUR` and `PHP_BASE_IMAGE_VERSION`
-
 
 ## Configuration
 
@@ -71,12 +86,15 @@ Adjust the versions in `.env` if you want to build a specific version.
 
 ## Building
 
-    docker-compose build
-
+```shell
+docker-compose build
+```
 
 ## Testing
 
-    docker-compose run --rm php php /tests/requirements.php
+```shell
+docker-compose run --rm php php /tests/requirements.php
+```
 
 ### Xdebug
 
@@ -85,12 +103,36 @@ To enable Xdebug, set `PHP_ENABLE_XDEBUG=1` in .env file
 Xdebug is configured to call ip `xdebug.remote_host` on `9005` port (not use standard port to avoid conflicts),
 so you have to configure your IDE to receive connections from that ip.
 
-If you are using macOS, you can fill `xdebug.remote_host` with `host.docker.internal`, due to a network limitation on mac (https://docs.docker.com/docker-for-mac/networking/#port-mapping)
+If you are using macOS, you can fill `xdebug.remote_host` with `host.docker.internal`, due to a network limitation on mac (<https://docs.docker.com/docker-for-mac/networking/#port-mapping>)
 
-    ### (macOS) configuration
-    xdebug.remote_host=host.docker.internal
+### (macOS) configuration
+
+> xdebug.remote_host=host.docker.internal
 
 ## Documentation
 
-More information can be found in the [docs](/docs) folder.
+- [Guide](docs/guide/README.md)
 
+## Support
+
+If you need help or have a question, the [Yii Forum](https://forum.yiiframework.com/c/yii-3-0/63) is a good place for that.
+You may also check out other [Yii Community Resources](https://www.yiiframework.com/community).
+
+## Support the project
+
+[![Open Collective](https://img.shields.io/badge/Open%20Collective-sponsor-7eadf1?logo=open%20collective&logoColor=7eadf1&labelColor=555555)](https://opencollective.com/yiisoft)
+
+## Follow updates
+
+[![Official website](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](https://www.yiiframework.com/)
+[![Twitter](https://img.shields.io/badge/twitter-follow-1DA1F2?logo=twitter&logoColor=1DA1F2&labelColor=555555?style=flat)](https://twitter.com/yiiframework)
+[![Telegram](https://img.shields.io/badge/telegram-join-1DA1F2?style=flat&logo=telegram)](https://t.me/yii3en)
+[![Facebook](https://img.shields.io/badge/facebook-join-1DA1F2?style=flat&logo=facebook&logoColor=ffffff)](https://www.facebook.com/groups/yiitalk)
+[![Slack](https://img.shields.io/badge/slack-join-1DA1F2?style=flat&logo=slack)](https://yiiframework.com/go/slack)
+
+## License
+
+The Yii 3.x PHP Docker Image is free software. It is released under the terms of the BSD License.
+Please see [`LICENSE`](./LICENSE.md) for more information.
+
+Maintained by [Yii Software](https://www.yiiframework.com/).
