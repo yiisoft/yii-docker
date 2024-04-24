@@ -71,7 +71,7 @@ return [
         (for example, plural in
         <a href=\"https://www.yiiframework.com/doc-2.0/yii-i18n-formatter.html#asRelativeTime%28%29-detail\">
         Formatter::asRelativeTime()</a>) in the <code>yii\i18n\Formatter</code> class. Your current ICU version is ' .
-            (defined('INTL_ICU_VERSION') ? INTL_ICU_VERSION : '(ICU is missing)') . '.',
+            (defined('INTL_ICU_VERSION') ? INTL_ICU_VERSION : '(ICU is missing)').'.',
     ],
     [
         'name'      => 'ICU Data version',
@@ -82,7 +82,7 @@ return [
         (for example, plural in
         <a href=\"https://www.yiiframework.com/doc-2.0/yii-i18n-formatter.html#asRelativeTime%28%29-detail\">
         Formatter::asRelativeTime()</a>) in the <code>yii\i18n\Formatter</code> class. Your current ICU Data version is ' .
-            (defined('INTL_ICU_DATA_VERSION') ? INTL_ICU_DATA_VERSION : '(ICU Data is missing)') . '.',
+            (defined('INTL_ICU_DATA_VERSION') ? INTL_ICU_DATA_VERSION : '(ICU Data is missing)').'.',
     ],
     [
         'name'      => 'Fileinfo extension',
