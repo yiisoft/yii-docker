@@ -1,4 +1,10 @@
 <p align="center">
+    <a href="https://github.com/yiisoft" target="_blank">
+        <img src="https://yiisoft.github.io/docs/images/yii_logo.svg" height="100px">
+    </a>
+    <a href="https://github.com/yiisoft" target="_blank">
+        <img src="https://www.docker.com/wp-content/uploads/2023/08/logo-guide-logos-1.svg" height="80px">
+    </a>
     <h1 align="center">Yii 3.x PHP Docker Image</h1>
     <br>
 </p>
@@ -111,12 +117,17 @@ If you are using macOS, you can fill `xdebug.remote_host` with `host.docker.inte
 
 ## Documentation
 
-- [Guide](docs/guide/README.md)
-
-## Support
+- Guide: [English](docs/guide/en/README.md), [Português - Brasil](docs/guide/pt-BR/README.md)
 
 If you need help or have a question, the [Yii Forum](https://forum.yiiframework.com/c/yii-3-0/63) is a good place for that.
 You may also check out other [Yii Community Resources](https://www.yiiframework.com/community).
+
+## License
+
+The Yii 3.x PHP Docker Image is free software. It is released under the terms of the BSD License.
+Please see [`LICENSE`](./LICENSE.md) for more information.
+
+Maintained by [Yii Software](https://www.yiiframework.com/).
 
 ## Support the project
 
@@ -129,10 +140,3 @@ You may also check out other [Yii Community Resources](https://www.yiiframework.
 [![Telegram](https://img.shields.io/badge/telegram-join-1DA1F2?style=flat&logo=telegram)](https://t.me/yii3en)
 [![Facebook](https://img.shields.io/badge/facebook-join-1DA1F2?style=flat&logo=facebook&logoColor=ffffff)](https://www.facebook.com/groups/yiitalk)
 [![Slack](https://img.shields.io/badge/slack-join-1DA1F2?style=flat&logo=slack)](https://yiiframework.com/go/slack)
-
-## License
-
-The Yii 3.x PHP Docker Image is free software. It is released under the terms of the BSD License.
-Please see [`LICENSE`](./LICENSE.md) for more information.
-
-Maintained by [Yii Software](https://www.yiiframework.com/).
