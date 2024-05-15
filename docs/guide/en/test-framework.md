@@ -10,7 +10,7 @@ Repository is kept so closed issues could be reviewed for historical reasons.
 
 Enter the container with
 
-```dockerfile
+```shell
 docker-compose run --rm -w /yii-core php bash
 ```
 
@@ -34,7 +34,7 @@ git checkout 2.0.12
 
 ## Using a specific PHP version
 
-```dockerfile
+```shell
 DOCKERFILE_FLAVOUR=debian PHP_BASE_IMAGE_VERSION=7.1.2-fpm docker-compose build
 
 DOCKERFILE_FLAVOUR=debian PHP_BASE_IMAGE_VERSION=7.1.2-fpm docker-compose run --rm php bash
