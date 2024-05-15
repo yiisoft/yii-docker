@@ -13,7 +13,7 @@ possam ser revisadas por razões históricas.
 
 Entre no contêiner com
 
-```dockerfile
+```shell
 docker-compose run --rm -w /yii-core php bash
 ```
 
@@ -37,7 +37,7 @@ git checkout 2.0.12
 
 ## Usando uma versão específica do PHP
 
-```dockerfile
+```shell
 DOCKERFILE_FLAVOUR=debian PHP_BASE_IMAGE_VERSION=7.1.2-fpm docker-compose build
 
 DOCKERFILE_FLAVOUR=debian PHP_BASE_IMAGE_VERSION=7.1.2-fpm docker-compose run --rm php bash
