@@ -36,9 +36,11 @@ jobs:
          - php-base-image-version: "8.3-fpm"
            dockerfile-flavour: "debian"
            compose-file: "docker-compose.yml,docker-compose.fpm-nginx.yml"
+           pecl-imagick-suffix: "/imagick@master"
          - php-base-image-version: "8.3-apache"
            dockerfile-flavour: "debian"
            compose-file: "docker-compose.yml,docker-compose.apache.yml"
+           pecl-imagick-suffix: "/imagick@master"
       fail-fast: false
     env:
       COMPOSE_FILE: ${{ matrix.compose-file }}
@@ -46,6 +48,7 @@ jobs:
       PHP_IMAGE_NAME: "yiisoftware/yii-php"
       PHP_BASE_IMAGE_VERSION: ${{ matrix.php-base-image-version }}
       DOCKERFILE_FLAVOUR: ${{ matrix.dockerfile-flavour }}
+      PECL_IMAGICK_INSTALL_SUFFIX: ${{ matrix.pecl-imagick-suffix }}
     steps:
     - name: Checkout
       uses: actions/checkout@v3
