@@ -10,10 +10,15 @@ on:
   schedule:
     - cron: '0 3 * * 0'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
 
   build:
 
+    name: build (${{ matrix.php-base-image-version }}, ${{ matrix.dockerfile-flavour }}, ${{ matrix.compose-file }}${{ matrix.pecl-imagick-suffix && format(', {0}', matrix.pecl-imagick-suffix) || '' }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -56,15 +61,15 @@ jobs:
       PECL_IMAGICK_INSTALL_SUFFIX: ${{ matrix.pecl-imagick-suffix }}
     steps:
     - name: Checkout
-      uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
+      uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
       with:
         persist-credentials: false
     - name: Set up QEMU
-      uses: docker/setup-qemu-action@2b82ce82d56a2a04d2637cd93a637ae1b359c0a7
+      uses: docker/setup-qemu-action@2b82ce82d56a2a04d2637cd93a637ae1b359c0a7 # v2.2.0
       with:
         platforms: 'amd64,arm64'
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@885d1462b80bc1c1c7f0b00334ad271f09369c55
+      uses: docker/setup-buildx-action@885d1462b80bc1c1c7f0b00334ad271f09369c55 # v2.10.0
     - name: Set version suffix (tags)
       if: startsWith(github.ref, 'refs/tags/')
       run: echo "PHP_IMAGE_VERSION_SUFFIX=-${GITHUB_REF:10}" >> $GITHUB_ENV
@@ -85,7 +90,7 @@ jobs:
         docker info
         docker compose version
     - name: Build Image
-      uses: docker/bake-action@6c87dcca988e4e074e3ab1f976a70f63ec9673fb
+      uses: docker/bake-action@6c87dcca988e4e074e3ab1f976a70f63ec9673fb # v2.3.0
       with:
         files: ${{ matrix.compose-file }}
         load: true
@@ -105,13 +110,13 @@ jobs:
           docker images
     - name: Login to Docker
       if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master'
-      uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
+      uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc # v2.2.0
       with:
         username: ${{ secrets.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_PASS }}
     - name: Build and push docker image (amd64 master/latest)
       if: (github.ref == 'refs/heads/master' && (github.event_name != 'workflow_dispatch' && github.event_name != 'schedule'))
-      uses: docker/bake-action@6c87dcca988e4e074e3ab1f976a70f63ec9673fb
+      uses: docker/bake-action@6c87dcca988e4e074e3ab1f976a70f63ec9673fb # v2.3.0
       with:
         files: ${{ matrix.compose-file }}
         push: true
@@ -121,7 +126,7 @@ jobs:
       if: |
           startsWith(github.ref, 'refs/tags/') ||
           (github.ref == 'refs/heads/master' && (github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'))
-      uses: docker/bake-action@6c87dcca988e4e074e3ab1f976a70f63ec9673fb
+      uses: docker/bake-action@6c87dcca988e4e074e3ab1f976a70f63ec9673fb # v2.3.0
       with:
         files: ${{ matrix.compose-file }}
         push: true
