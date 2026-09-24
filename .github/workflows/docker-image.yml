@@ -65,11 +65,11 @@ jobs:
       with:
         persist-credentials: false
     - name: Set up QEMU
-      uses: docker/setup-qemu-action@1f40c72289eff860ee54a304f1438e3cff362e0a # v4.3.0
+      uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
       with:
         platforms: 'amd64,arm64'
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e # v4.3.0
+      uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
     - name: Set version suffix (tags)
       if: startsWith(github.ref, 'refs/tags/')
       run: echo "PHP_IMAGE_VERSION_SUFFIX=-${GITHUB_REF:10}" >> $GITHUB_ENV
@@ -90,7 +90,7 @@ jobs:
         docker info
         docker compose version
     - name: Build Image
-      uses: docker/bake-action@d3418bd7d0e9324001bca92fa8ba175ea7e6dc9b # v7.3.0
+      uses: docker/bake-action@018cb6412ab401ebaa809aa5f85966b74628600f # v7.4.0
       with:
         files: ${{ matrix.compose-file }}
         load: true
@@ -116,7 +116,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASS }}
     - name: Build and push docker image (amd64 master/latest)
       if: (github.ref == 'refs/heads/master' && (github.event_name != 'workflow_dispatch' && github.event_name != 'schedule'))
-      uses: docker/bake-action@d3418bd7d0e9324001bca92fa8ba175ea7e6dc9b # v7.3.0
+      uses: docker/bake-action@018cb6412ab401ebaa809aa5f85966b74628600f # v7.4.0
       with:
         files: ${{ matrix.compose-file }}
         push: true
@@ -126,7 +126,7 @@ jobs:
       if: |
           startsWith(github.ref, 'refs/tags/') ||
           (github.ref == 'refs/heads/master' && (github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'))
-      uses: docker/bake-action@d3418bd7d0e9324001bca92fa8ba175ea7e6dc9b # v7.3.0
+      uses: docker/bake-action@018cb6412ab401ebaa809aa5f85966b74628600f # v7.4.0
       with:
         files: ${{ matrix.compose-file }}
         push: true
